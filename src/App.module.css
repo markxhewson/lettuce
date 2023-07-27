@@ -1,0 +1,86 @@
+.navBar {
+  width: 100%;
+  height: 10vh;
+  background-color: rgba(255, 0, 0, 0.884);
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.buttons {
+  margin-left: auto;
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+}
+
+.connectButton {
+  background-color: chartreuse;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.button {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.title {
+  padding: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.credentials {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+
+input {
+  width: 140px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+button {
+  width: 150px;
+  border-radius: 5px;
+}
+
+.codeContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.code {
+  text-align: left;
+  border-radius: 10px;
+  background-color: #282b2e;
+  padding: 20px;
+  width: 700px;
+  max-width: 700px;
+}
+
+.codeContent {
+  background-color:lightgray;
+  height: 400px;
+  overflow-y: scroll;
+  border-radius: 5px;
+}

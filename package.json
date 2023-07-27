@@ -2,20 +2,45 @@
   "name": "lettuce",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
+  "homepage": "./",
+  "build": {
+    "appId": "com.lettuce.app",
+    "productName": "Lettuce",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "./dist/**/*",
+      "./build/**/*",
+      "./package.json",
+      "./index.js"
+    ],
+    "extends": null
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "highlight.js": "^11.8.0",
+    "ioredis": "^5.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-highlight": "^0.15.0",
     "react-scripts": "5.0.1",
+    "redis": "^4.6.7",
+    "redis-ssh": "^1.0.0",
+    "uninstall": "^0.0.0",
+    "wait-on": "^7.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "prod": "cross-env NODE_ENV=production npm run electron",
+    "start": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "electron": "electron .",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm start\" \"wait-on http://localhost:3000 && npm run electron\"",
+    "compile": "electron-builder --dir"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +59,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "^25.3.1",
+    "electron-builder": "^24.6.3"
   }
 }
