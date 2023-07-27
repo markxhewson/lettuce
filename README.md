@@ -19,7 +19,7 @@ It allows you to view pub/sub messages in real-time, with correct formatting and
 
 This will load the React content, then compile the Electron application with the up-to-date React build.
 
-<ul">
+<ul>
   <li>The executable file is within **dist/win-unpacked/Lettuce.exe**</li>
 </ul>
 
