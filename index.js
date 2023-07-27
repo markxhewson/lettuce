@@ -46,23 +46,28 @@ app.on('ready', () => {
     });
 
     client.on('ready', () => {
+      console.log("connected!")
       window.webContents.send('redis-connection-status', true);
     });
 
     client.on('message', (channel, message) => {
+      console.log("message: ", message)
       window.webContents.send('redis-packet', message);
     });
   });
 
   ipcMain.on('redis-subscribe', (event, channel) => {
+    console.log("subscribing to channel: ", channel)
     client.subscribe(channel);
   });
 
   ipcMain.on('redis-unsubscribe', (event, channel) => {
+    console.log("unsubscribing from channel: ", channel)
     client.unsubscribe(channel);
   });
 
   ipcMain.on('redis-disconnect', () => {
+    console.log("disconnecting from redis")
     client.quit();
     window.webContents.send('redis-connection-status', false);
   })

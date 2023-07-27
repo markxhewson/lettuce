@@ -15,11 +15,6 @@
   gap: 20px;
 }
 
-.connectButton {
-  background-color: chartreuse;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
 .button {
   font-size: 1.5rem;
   font-weight: bold;
@@ -69,18 +64,9 @@ button {
   justify-content: center;
 }
 
-.code {
-  text-align: left;
-  border-radius: 10px;
-  background-color: #282b2e;
-  padding: 20px;
-  width: 700px;
-  max-width: 700px;
-}
-
 .codeContent {
-  background-color:lightgray;
   height: 400px;
   overflow-y: scroll;
   border-radius: 5px;
+  width: 700px;
 }
