@@ -2,12 +2,12 @@ import React, { useState, useRef } from 'react';
 import styles from './App.module.css';
 
 import useIpcListeners from './helpers/ipcHelpers';
-import { handleRedisConnect, handleRedisDisconnect, handleRedisChannelChange } from './helpers/handleRedisActions';
+import { redisConnect, redisDisconnect, updateRedisChannel } from './helpers/handleRedisActions';
 import handleCredentialsUpdate from './helpers/handleCredentialsUpdate';
 
 import Highlight from 'react-highlight'
-import 'highlight.js/styles/obsidian.css'; // Import the CSS for the default highlight.js style
-import 'highlight.js/lib/languages/json'; // Import the JSON syntax highlighting for highlight.js
+import 'highlight.js/styles/obsidian.css';
+import 'highlight.js/lib/languages/json';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -25,14 +25,14 @@ function App() {
       <nav className={styles.navBar}>
         <div className={styles.title}>Lettuce v0.1.0</div>
         <div className={styles.buttons}>
-          <button className={styles.button} onClick={() => isConnected ? handleRedisDisconnect(ipcRenderer) : handleRedisConnect(ipcRenderer, formData)}>
+          <button className={styles.button} onClick={() => isConnected ? redisDisconnect(ipcRenderer) : redisConnect(ipcRenderer, formData)}>
             {isConnected ? 'Disconnect' : 'Connect'}
           </button>
 
           {isConnected && (
             <>
               <button onClick={() => setMessages([])} className={styles.button}>Clear</button>
-              <input type="text" name="channel" placeholder="channel" onChange={(e) => handleRedisChannelChange(e, channelRef, ipcRenderer)} className={styles.button} />
+              <input type="text" name="channel" placeholder="channel" onChange={(e) => updateRedisChannel(e, channelRef, ipcRenderer)} className={styles.button} />
             </>
           )}
         </div>

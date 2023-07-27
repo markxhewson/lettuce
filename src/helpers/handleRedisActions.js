@@ -1,12 +1,12 @@
-const handleRedisConnect = (ipcRenderer, formData) => {
+const redisConnect = (ipcRenderer, formData) => {
   ipcRenderer.send('redis-connect', formData);
 };
 
-const handleRedisDisconnect = (ipcRenderer) => {
+const redisDisconnect = (ipcRenderer) => {
   ipcRenderer.send('redis-disconnect');
 };
 
-const handleRedisChannelChange = (e, channelRef, ipcRenderer) => {
+const updateRedisChannel = (e, channelRef, ipcRenderer) => {
   const { value } = e.target;
 
   if (value !== channelRef.current) {
@@ -22,4 +22,4 @@ const handleRedisChannelChange = (e, channelRef, ipcRenderer) => {
   }
 };
 
-export { handleRedisConnect, handleRedisDisconnect, handleRedisChannelChange}
+export { redisConnect, redisDisconnect, updateRedisChannel };
