@@ -28,13 +28,19 @@ function App() {
   const handleConnect = () => ipcRenderer.send('redis-connect', formData);
   const handleDisconnect = () => ipcRenderer.send('redis-disconnect');
   const handleChannelChange = (e) => {
-    ipcRenderer.send('redis-unsubscribe', channelRef.current); // Unsubscribe from previous channel
-
-    const { value } = e?.target;
-    if (!value) return; // prevent subscribing to an empty string
-
-    channelRef.current = value;
-    ipcRenderer.send('redis-subscribe', value); // Use the value directly
+    const { value } = e.target;
+    
+    if (value !== channelRef.current) {
+      if (channelRef.current) {
+        ipcRenderer.send('redis-unsubscribe', channelRef.current);
+      }
+    
+      channelRef.current = value;
+    
+      if (value) {
+        ipcRenderer.send('redis-subscribe', value);
+      }
+    }
   };
 
   React.useEffect(() => {
@@ -69,8 +75,13 @@ function App() {
           <button className={styles.button + " " + styles.connectButton} onClick={() => isConnected ? handleDisconnect() : handleConnect()}>
             {isConnected ? 'Disconnect' : 'Connect'}
           </button>
-          {isConnected ? <button onClick={() => setMessages([])} className={styles.button}>Clear</button> : null}
-          {isConnected ? <input type="text" name="channel" placeholder="channel" onChange={handleChannelChange} className={styles.button} /> : null}
+
+          {isConnected && (
+            <>
+              <button onClick={() => setMessages([])} className={styles.button}>Clear</button>
+              <input type="text" name="channel" placeholder="channel" onChange={handleChannelChange} className={styles.button} />
+            </>
+          )}
         </div>
       </nav>
 
@@ -112,8 +123,8 @@ function App() {
 
         <div className={styles.codeContainer}>
           <div className={styles.code}>
-            <Highlight className={styles.codeContent + " " + "json"}>
-              {messages.length > 0 ? JSON.stringify(messages, null, 2) : ( isConnected ? 'Waiting for packets...' : 'Connect to start receiving packets') }
+            <Highlight className={`${styles.codeContent} json`}>
+              {messages.length > 0 ? JSON.stringify(messages, null, 2) : (isConnected ? 'Waiting for packets...' : 'Connect to start receiving packets')}
             </Highlight>
           </div>
         </div>
