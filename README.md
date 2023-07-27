@@ -13,14 +13,14 @@ It allows you to view pub/sub messages in real-time, with correct formatting and
   <li>npm run compile</li>
 </ul>
 
-This will load the React content, then compile the Electron application with the up to date React build.
+This will load the React content, then compile the Electron application with the up-to-date React build.
 
-Lettuce is located in the **dist/** folder.
+Lettuce is located in the **dist/** folder within the main folder.
 
 <h1>Usage</h1>
 Simply run the application after build and enter your Redis server details.
 
-Then enter your Redis channel to listen to packet messages.
+You must then enter your Redis channel to listen to packet messages.
 
 <ul>
   <li>Note that your Redis server must be able to be connected to from outside sources.</li>
